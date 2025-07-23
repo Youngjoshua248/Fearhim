@@ -1,0 +1,8 @@
+{
+  "componentDefaults": {
+    "style": "default"
+  },
+  "aliases": {
+    "@/components": "./src/components"
+  }
+}
