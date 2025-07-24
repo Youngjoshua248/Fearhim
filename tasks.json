@@ -1,0 +1,302 @@
+{
+  "project": "Fearhim - Fashion-Tech Capstone",
+  "description": "Full-stack fashion-tech application with React frontend and Node.js backend",
+  "version": "1.0.0",
+  "tasks": {
+    "critical": {
+      "environment_setup": {
+        "title": "Environment Setup",
+        "description": "Create necessary environment files and configuration",
+        "status": "pending",
+        "priority": "critical",
+        "subtasks": [
+          {
+            "id": "env-1",
+            "task": "Create .env file in backend directory",
+            "description": "Add environment variables for database, JWT, and API keys",
+            "required_vars": [
+              "PG_CONNECTION_STRING or individual PostgreSQL credentials",
+              "JWT_SECRET for authentication",
+              "OPENAI_API_KEY for AI features",
+              "PORT (defaults to 3000)"
+            ],
+            "status": "pending"
+          },
+          {
+            "id": "env-2",
+            "task": "Verify environment variables are loaded",
+            "description": "Test that dotenv is properly configured",
+            "status": "pending"
+          }
+        ]
+      },
+      "database_setup": {
+        "title": "Database Setup",
+        "description": "Set up PostgreSQL database and run migrations",
+        "status": "pending",
+        "priority": "critical",
+        "subtasks": [
+          {
+            "id": "db-1",
+            "task": "Install PostgreSQL if not already installed",
+            "description": "Ensure PostgreSQL is running locally",
+            "status": "pending"
+          },
+          {
+            "id": "db-2",
+            "task": "Create database named 'fearhim'",
+            "description": "Create the main database for the application",
+            "status": "pending"
+          },
+          {
+            "id": "db-3",
+            "task": "Update database credentials in knexfile.js",
+            "description": "Configure connection string or individual credentials",
+            "status": "pending"
+          },
+          {
+            "id": "db-4",
+            "task": "Run database migrations",
+            "description": "Execute: npm run migrate (in backend directory)",
+            "status": "pending"
+          },
+          {
+            "id": "db-5",
+            "task": "Run database seeds",
+            "description": "Execute: npm run seed (in backend directory)",
+            "status": "pending"
+          }
+        ]
+      },
+      "backend_fixes": {
+        "title": "Fix Critical Backend Issues",
+        "description": "Resolve syntax errors and configuration issues",
+        "status": "pending",
+        "priority": "critical",
+        "subtasks": [
+          {
+            "id": "backend-1",
+            "task": "Fix backend/index.js Routes syntax error",
+            "description": "Correct the Routes setup that has syntax issues",
+            "status": "pending"
+          },
+          {
+            "id": "backend-2",
+            "task": "Install backend dependencies",
+            "description": "Run: npm install (in backend directory)",
+            "status": "pending"
+          },
+          {
+            "id": "backend-3",
+            "task": "Verify all route files are properly configured",
+            "description": "Check auth.js, outfits.js, styleboardRoutes.js, profile.js",
+            "status": "pending"
+          },
+          {
+            "id": "backend-4",
+            "task": "Test backend server startup",
+            "description": "Run: npm run dev and verify server starts without errors",
+            "status": "pending"
+          }
+        ]
+      },
+      "frontend_fixes": {
+        "title": "Fix Critical Frontend Issues",
+        "description": "Resolve routing and configuration issues",
+        "status": "pending",
+        "priority": "critical",
+        "subtasks": [
+          {
+            "id": "frontend-1",
+            "task": "Fix frontend/src/App.jsx routing configuration",
+            "description": "Correct duplicate routes and syntax errors",
+            "status": "pending"
+          },
+          {
+            "id": "frontend-2",
+            "task": "Install frontend dependencies",
+            "description": "Run: npm install (in frontend directory)",
+            "status": "pending"
+          },
+          {
+            "id": "frontend-3",
+            "task": "Configure API endpoints",
+            "description": "Ensure frontend points to correct backend URL",
+            "status": "pending"
+          },
+          {
+            "id": "frontend-4",
+            "task": "Test frontend development server",
+            "description": "Run: npm run dev and verify it starts without errors",
+            "status": "pending"
+          }
+        ]
+      }
+    },
+    "important": {
+      "development_workflow": {
+        "title": "Development Workflow Setup",
+        "description": "Configure concurrent development servers and CORS",
+        "status": "pending",
+        "priority": "important",
+        "subtasks": [
+          {
+            "id": "workflow-1",
+            "task": "Set up concurrent development servers",
+            "description": "Frontend on port 5173, backend on port 3000",
+            "status": "pending"
+          },
+          {
+            "id": "workflow-2",
+            "task": "Configure CORS properly",
+            "description": "Ensure frontend can communicate with backend",
+            "status": "pending"
+          },
+          {
+            "id": "workflow-3",
+            "task": "Test complete user flow",
+            "description": "Signup → login → dashboard → features",
+            "status": "pending"
+          }
+        ]
+      },
+      "authentication_testing": {
+        "title": "Authentication Flow Testing",
+        "description": "Verify user registration and login functionality",
+        "status": "pending",
+        "priority": "important",
+        "subtasks": [
+          {
+            "id": "auth-1",
+            "task": "Test user registration",
+            "description": "Verify signup form works and creates users",
+            "status": "pending"
+          },
+          {
+            "id": "auth-2",
+            "task": "Test user login",
+            "description": "Verify login form works and generates JWT tokens",
+            "status": "pending"
+          },
+          {
+            "id": "auth-3",
+            "task": "Test protected routes",
+            "description": "Verify ProtectedRoute component works correctly",
+            "status": "pending"
+          }
+        ]
+      }
+    },
+    "enhancement": {
+      "error_handling": {
+        "title": "Error Handling and UX Improvements",
+        "description": "Add proper error handling and loading states",
+        "status": "pending",
+        "priority": "enhancement",
+        "subtasks": [
+          {
+            "id": "ux-1",
+            "task": "Add proper error handling",
+            "description": "Implement error boundaries and user-friendly error messages",
+            "status": "pending"
+          },
+          {
+            "id": "ux-2",
+            "task": "Add loading states",
+            "description": "Show loading indicators during API calls",
+            "status": "pending"
+          },
+          {
+            "id": "ux-3",
+            "task": "Implement form validation",
+            "description": "Add client-side and server-side validation",
+            "status": "pending"
+          }
+        ]
+      },
+      "responsive_design": {
+        "title": "Responsive Design Improvements",
+        "description": "Ensure application works well on all devices",
+        "status": "pending",
+        "priority": "enhancement",
+        "subtasks": [
+          {
+            "id": "responsive-1",
+            "task": "Test mobile responsiveness",
+            "description": "Verify all pages work on mobile devices",
+            "status": "pending"
+          },
+          {
+            "id": "responsive-2",
+            "task": "Optimize for tablet devices",
+            "description": "Ensure good experience on tablet screens",
+            "status": "pending"
+          }
+        ]
+      },
+      "logging_debugging": {
+        "title": "Logging and Debugging Setup",
+        "description": "Add proper logging for development and debugging",
+        "status": "pending",
+        "priority": "enhancement",
+        "subtasks": [
+          {
+            "id": "logging-1",
+            "task": "Set up proper logging",
+            "description": "Add structured logging for backend operations",
+            "status": "pending"
+          },
+          {
+            "id": "logging-2",
+            "task": "Add debugging tools",
+            "description": "Configure debugging for development environment",
+            "status": "pending"
+          }
+        ]
+      }
+    }
+  },
+  "file_structure": {
+    "backend": {
+      "routes": ["auth.js", "outfits.js", "styleboardRoutes.js", "profile.js", "ai.js"],
+      "db": {
+        "migrations": "10 migration files for database schema",
+        "seeds": "Database seed files"
+      },
+      "controllers": "Business logic files",
+      "middleware": "Express middleware"
+    },
+    "frontend": {
+      "pages": ["Dashboard.jsx", "LandingPage.jsx", "Profile.jsx", "Signup.jsx", "UploadBoard.jsx", "login.jsx"],
+      "components": "React components",
+      "src": "Main application code"
+    }
+  },
+  "dependencies": {
+    "backend": {
+      "express": "^5.1.0",
+      "knex": "^3.1.0",
+      "pg": "^8.16.3",
+      "bcrypt": "^6.0.0",
+      "jsonwebtoken": "^9.0.2",
+      "openai": "^5.10.1",
+      "cors": "^2.8.5",
+      "dotenv": "^17.1.0"
+    },
+    "frontend": {
+      "react": "^19.1.0",
+      "react-dom": "^19.1.0",
+      "react-router-dom": "^7.6.3",
+      "axios": "^1.10.0",
+      "tailwindcss": "^3.4.1",
+      "vite": "^7.0.0"
+    }
+  },
+  "notes": [
+    "This is a fashion-tech application with AI-powered outfit generation",
+    "Uses PostgreSQL for data persistence",
+    "JWT for authentication",
+    "OpenAI integration for AI features",
+    "React frontend with Tailwind CSS styling"
+  ]
+} 

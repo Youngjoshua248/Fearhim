@@ -3,10 +3,9 @@
  * @returns { Promise<void> }
  */
 exports.up = function (knex) {
-  return knex.schema.alterTable("outfits", (table) => {
-    table.string("title");
-    // table.text("description"); // Already exists, so don't add again
-  });
+  // Title column already exists in the outfits table creation migration
+  // No need to add it again
+  return Promise.resolve();
 };
 
 /**
@@ -14,8 +13,6 @@ exports.up = function (knex) {
  * @returns { Promise<void> }
  */
 exports.down = function (knex) {
-  return knex.schema.alterTable("outfits", (table) => {
-    table.dropColumn("title");
-    // table.dropColumn("description"); // Only drop if you want to remove it
-  });
+  // Title column is part of the main table, don't drop it here
+  return Promise.resolve();
 };

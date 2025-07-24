@@ -1,31 +1,41 @@
-// import { Input } from "@/components/ui/input";
-// import { Button } from "@/components/ui/button";
-
-// export default function Signup() {
-//   return (
-//     <div className="h-screen flex items-center justify-center bg-black text-white">
-//       <form className="space-y-4 p-8 rounded-xl w-full max-w-sm bg-[#1a1a1a] shadow-lg">
-//         <h1 className="text-2xl font-bold text-center">Sign Up</h1>
-//         <Input type="email" placeholder="Email" />
-//         <Input type="password" placeholder="Password" />
-//         <Button className="w-full">Create Account</Button>
-//       </form>
-//     </div>
-//   );
-// }
-
-//pt2
-// src/pages/login.jsx
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function Login() {
+export default function Signup() {
   const [fadeIn, setFadeIn] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
     setFadeIn(true);
   }, []);
+
+  const handleSignup = async (e) => {
+    e.preventDefault();
+    setError("");
+
+    try {
+      const res = await fetch("http://localhost:3000/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password, username }),
+      });
+
+      const data = await res.json();
+      if (res.ok) {
+        alert("Account created successfully! Please log in.");
+        navigate("/login");
+      } else {
+        setError(data.error || "Signup failed");
+      }
+    } catch (err) {
+      console.error(err);
+      setError("Server error. Please try again.");
+    }
+  };
 
   return (
     <div
@@ -36,28 +46,45 @@ export default function Login() {
       <h1 className="text-4xl font-bold mb-6 hover:text-blue-500 transition-colors duration-300">
         FEARHIM
       </h1>
-      <form className="flex flex-col gap-4 w-72">
+      <form onSubmit={handleSignup} className="flex flex-col gap-4 w-72">
         <input
           type="text"
-          placeholder="Username or Email"
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
           className="bg-transparent border-b border-white text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-all duration-300"
+          required
+        />
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className="bg-transparent border-b border-white text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-all duration-300"
+          required
         />
         <input
           type="password"
           placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
           className="bg-transparent border-b border-white text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-all duration-300"
+          required
         />
         <button
           type="submit"
           className="mt-4 border border-white text-white py-2 hover:bg-blue-500 transition-colors duration-300"
         >
-          Log In
+          Create Account
         </button>
+        {error && (
+          <p className="text-red-500 text-sm text-center">{error}</p>
+        )}
         <p
-          onClick={() => navigate("/signup")}
+          onClick={() => navigate("/login")}
           className="text-sm text-gray-400 hover:text-blue-500 cursor-pointer transition-colors duration-300 text-center"
         >
-          Don’t have an account? Sign up
+          Already have an account? Log in
         </p>
       </form>
     </div>

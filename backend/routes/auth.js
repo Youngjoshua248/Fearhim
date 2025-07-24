@@ -1,32 +1,30 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-//const { PrismaClient } = require("@prisma/client");
+const knex = require("../db/knex");
 const verifyToken = require("../middleware/verifyToken");
 
 const router = express.Router();
-// const prisma = new PrismaClient();
 
 // ✅ Register
 router.post("/register", async (req, res) => {
-  const { email, password } = req.body;
+  const { email, password, username } = req.body;
 
   try {
-    const existingUser = await prisma.user.findUnique({ where: { email } });
+    const existingUser = await knex("users").where({ email }).first();
     if (existingUser) {
       return res.status(409).json({ error: "User already exists" });
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const newUser = await prisma.user.create({
-      data: {
-        email,
-        password: hashedPassword,
-      },
+    await knex("users").insert({
+      email,
+      username: username || email.split('@')[0], // Use email prefix as username if not provided
+      hashed_password: hashedPassword,
     });
 
-    res.status(201).json({ message: "User created", userId: newUser.id });
+    res.status(201).json({ message: "User created successfully" });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "Something went wrong" });
@@ -38,13 +36,13 @@ router.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    const user = await prisma.user.findUnique({ where: { email } });
+    const user = await knex("users").where({ email }).first();
 
     if (!user) {
       return res.status(401).json({ message: "Invalid email or password" });
     }
 
-    const isMatch = await bcrypt.compare(password, user.password);
+    const isMatch = await bcrypt.compare(password, user.hashed_password);
     if (!isMatch) {
       return res.status(401).json({ message: "Invalid email or password" });
     }
@@ -53,7 +51,7 @@ router.post("/login", async (req, res) => {
       expiresIn: "7d",
     });
 
-    res.json({ message: "Login successful", token });
+    res.json({ message: "Login successful", token, user: { id: user.id, email: user.email, username: user.username } });
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Something went wrong" });

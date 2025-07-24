@@ -10,7 +10,10 @@ import Profile from "./pages/Profile";
 
 export default function App() {
   return (
-    <Routes path="/profile" element={<Profile />}>
+    <Routes>
+      <Route path="/" element={<LandingPage />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<Signup />} />
       <Route
         path="/profile"
         element={
@@ -19,18 +22,27 @@ export default function App() {
           </ProtectedRoute>
         }
       />
-      <Route path="/" element={<LandingPage />} />
-      <Route path="/" element={<Login />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/signup" element={<Signup />} />
-      <Route path="/dashboard" element={<Dashboard />} />
-      <Route path="/upload" element={<UploadBoard />} />
-      <Route path="/generate" element={<GenerateOutfit />} />
       <Route
         path="/dashboard"
         element={
           <ProtectedRoute>
             <Dashboard />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/upload"
+        element={
+          <ProtectedRoute>
+            <UploadBoard />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/generate"
+        element={
+          <ProtectedRoute>
+            <GenerateOutfit />
           </ProtectedRoute>
         }
       />

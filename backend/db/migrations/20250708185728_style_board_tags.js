@@ -14,7 +14,7 @@ exports.up = function (knex) {
       .references("id")
       .inTable("tags")
       .onDelete("CASCADE");
-    table.primary(["styleboard_id", "tag_id"]);
+    table.primary(["style_board_id", "tag_id"]);
   });
 };
 
