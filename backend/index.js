@@ -1,4 +1,3 @@
-//pt4
 // backend/index.js
 const express = require("express");
 const cors = require("cors");
@@ -9,18 +8,18 @@ dotenv.config();
 app.use(cors());
 app.use(express.json());
 
-//  Mount your route files
+// Mount your route files
 const authRoutes = require("./routes/auth");
 const outfitRoutes = require("./routes/outfits");
 const styleboardRoutes = require("./routes/styleboardRoutes");
 const profileRoutes = require("./routes/profile");
 
-app.use("/auth", authRoutes); // 🔥 This is the one your frontend is trying to hit
+app.use("/auth", authRoutes); // 👈 frontend will hit this at http://localhost:3000/auth/login
 app.use("/api/outfits", outfitRoutes);
 app.use("/api/styleboards", styleboardRoutes);
 app.use("/api/profile", profileRoutes);
 
-//  Test route
+// Test route
 app.get("/", (req, res) => {
   res.send("FEARHIM backend is running 👻");
 });
